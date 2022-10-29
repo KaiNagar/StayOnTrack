@@ -1,6 +1,16 @@
+import { storageService } from "./async-storage.service"
+import { utilService } from "./utilService"
+
 export const mealService = {
-    getMeals,
+    query,
+    getById,
+    remove,
+    add,
+    update,
+    getEmptyMeal
 }
+
+const DB_KEY = 'mealDB'
 
 const ingredients = [
     {
@@ -13,45 +23,98 @@ const ingredients = [
     }
 ]
 
-const meals = [
-    {
-        _id: _makeId(),
-        name: 'Rice and Chicken',
-        ingredients: [
-            { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
-        ]
-    }, {
-        _id: _makeId(),
-        name: 'Rice and Chicken',
-        ingredients: [
-            { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
-        ]
-    }, {
-        _id: _makeId(),
-        name: 'Rice and Chicken',
-        ingredients: [
-            { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
-        ]
-    }, {
-        _id: _makeId(),
-        name: 'Rice and Chicken',
-        ingredients: [
-            { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
-        ]
-    }, {
-        _id: _makeId(),
-        name: 'Rice and Chicken',
-        ingredients: [
-            { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
-        ]
-    },
 
-]
+function query() {
+    let meals = _loadFromStorage()
+    if(!meals){
+        meals = _createMeals()
+        _saveToStorage(meals)
+    }
+    return Promise.resolve(meals)
 
-function getMeals() {
-    return meals
 }
 
+function getById(mealId) {
+    if(!mealId) return Promise.resolve(null)
+    const meals = _loadFromStorage()
+    const meal = meals.find(m=> m._id === mealId)
+    return Promise.resolve(meal)
+}
+
+function remove(mealId){
+    let meals = _loadFromStorage()
+    meals = meals.filter(m=> m._id !== mealId)
+    _saveToStorage(meals)
+    return Promise.resolve()
+}
+
+function add(meal){
+    let meals = _loadFromStorage()
+    meal._id = _makeId()
+    meals = [meal,...meals]
+    _saveToStorage(meals)
+    return Promise.resolve(meal)
+}
+
+function update(mealId,meal){
+    let meals = _loadFromStorage()
+    const mealIdx = meals.findIndex(m=> m._id === mealId)
+    meals[mealIdx] = meal
+    _saveToStorage(meals)
+    return Promise.resolve(meal)
+}
+
+function getEmptyMeal() {
+    return {
+        _id: _makeId(),
+        name: '',
+        ingredients: []
+    }
+}
+
+function _loadFromStorage() {
+    return utilService.loadFromStorage(DB_KEY)
+}
+function _saveToStorage(meals) {
+    return utilService.saveToStorage(DB_KEY, meals)
+}
+
+function _createMeals() {
+    return [
+        {
+            _id: _makeId(),
+            name: 'Rice and Chicken',
+            ingredients: [
+                { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
+            ]
+        }, {
+            _id: _makeId(),
+            name: 'Rice and Chicken',
+            ingredients: [
+                { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
+            ]
+        }, {
+            _id: _makeId(),
+            name: 'Rice and Chicken',
+            ingredients: [
+                { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
+            ]
+        }, {
+            _id: _makeId(),
+            name: 'Rice and Chicken',
+            ingredients: [
+                { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
+            ]
+        }, {
+            _id: _makeId(),
+            name: 'Rice and Chicken',
+            ingredients: [
+                { id: 'rice101', amount: 200, scale: 'gram' }, { id: 'chicken101', amount: 200, scale: 'gram' }
+            ]
+        },
+
+    ]
+}
 
 function _makeId(length = 10) {
     var txt = ""

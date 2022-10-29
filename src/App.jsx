@@ -14,6 +14,7 @@ export function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/meal/edit/:id' element={<MealEdit />} />
+          <Route path='/meal/edit' element={<MealEdit />} />
           {/* <Route path="/meal/:id" element={<MealDetails />} /> */}
           <Route path='/meal' element={<MealPage />} />
           <Route path='/' element={<Home />} />
