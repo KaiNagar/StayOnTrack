@@ -1,0 +1,10 @@
+.meal-preview{
+    padding: 1rem;
+    display: grid; 
+    grid-template-columns: 1fr 10fr 10fr 1fr;
+    &:hover{
+        text-decoration: none;
+        background-color: rgba(219, 215, 215, 0.774);
+
+    }
+}

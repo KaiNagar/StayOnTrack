@@ -1,5 +1,18 @@
 .app-header-container{
     background-color: lightblue;
-    padding: 1rem;
     font-size: rem(30px);
+    .logo{
+        margin: 0 1rem;
+    }
+
+    .nav-bar{
+        & >*{
+            margin: 0 1rem;
+        }
+        & >*:hover{
+            text-decoration: none;
+            color: gray;
+            cursor: pointer;
+        }
+    }
 }

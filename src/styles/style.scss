@@ -11,5 +11,10 @@
 // layout
 @import "./3-layout/main-layout";
 
-//cmps
+// views
+@import "./5-views/MealPage";
+
+// cmps
 @import "./4-cmps/AppHeader.scss";
+@import "./4-cmps/MealList";
+@import "./4-cmps/MealPreview";

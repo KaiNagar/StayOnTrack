@@ -1,12 +1,18 @@
-import React from "react"
-import { NavLink, withRouter } from "react-router-dom"
+import React from 'react'
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'
 
-
-function _AppHeader(){
-    return (
-        <section>
-
-        </section>
-    )
+export default function AppHeader() {
+  return (
+    <section className='app-header flex space-between container'>
+        <div className="logo">
+            Stay On Track
+        </div>
+      <div className='nav-bar'>
+        <Link to='/'>Home</Link>|
+        <Link to='/meal'>Meals</Link>|
+        <Link to='/login'>Login</Link>
+      </div>
+    </section>
+    
+  )
 }
-export const AppHeader = withRouter(_AppHeader)
