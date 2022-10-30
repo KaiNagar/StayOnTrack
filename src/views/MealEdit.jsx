@@ -1,24 +1,43 @@
-import { Component } from 'react'
+import { Component, useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { mealService } from '../services/mealService'
 
-//  saveMeal = () =>{
-//     console.log('bla');
+// export class MealEdit extends Component {
+//   state = {
+//     meal: null,
+//   }
+//   componentDidMount() {
+//     this.loadMeal()
+//     // const meal = id ? await mealService.getById(id) : mealService.getEmptyMeal()
+//     // this.setState({meal})
+//   }
+//   loadMeal = () => {
+//     console.log(this.props)
+//   }
+//   render() {
+//     const { meal } = this.state
+//     return <section className='meal-edit'>this is meal details</section>
+//   }
 // }
 
-export class MealEdit extends Component {
-  state = {
-    meal: {},
+// export default function MealEdit(props) {
+//   console.log(props)
+//   return <section></section>
+// }
+
+export default function MealEdit() {
+  const [meal, setMeal] = useState(null)
+  const params = useParams()
+  useEffect(() => {
+    loadMeal()
+  }, [params.id])
+
+  const loadMeal = async () => {
+    const mealId = params.id
+    const meal = await mealService.getById(mealId)
+    console.log(meal);
+    setMeal(meal)
   }
-  async componentDidMount() {
-    const { id } = this.props.match.params
-    console.log(id);
-    // const meal = id ? await mealService.getById(id) : mealService.getEmptyMeal()
-    // this.setState({meal})
-  }
-  render() {
-    const {meal} = this.state
-    return <section className='meal-edit'>{JSON.stringify(meal)}</section>
-  }
+  return <section className='meal-edit'></section>
 }
