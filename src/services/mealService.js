@@ -5,8 +5,7 @@ export const mealService = {
     query,
     getById,
     remove,
-    add,
-    update,
+    save,
     getEmptyMeal
 }
 
@@ -53,7 +52,12 @@ function remove(mealId) {
     return Promise.resolve()
 }
 
-function add(meal) {
+function save(meal){
+    if(meal._id) return _update(meal)
+    else return _add(meal)
+}
+
+function _add(meal) {
     let meals = _loadFromStorage()
     meal._id = _makeId()
     meals = [meal, ...meals]
@@ -61,7 +65,7 @@ function add(meal) {
     return Promise.resolve(meal)
 }
 
-function update(mealId, meal) {
+function _update(mealId, meal) {
     let meals = _loadFromStorage()
     const mealIdx = meals.findIndex(m => m._id === mealId)
     meals[mealIdx] = meal
