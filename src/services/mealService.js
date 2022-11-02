@@ -24,29 +24,35 @@ const ingredients = [
 
 
 function query(filterBy = null) {
-    return storageService.query(DB_KEY)
+    let meals = _loadFromStorage(DB_KEY)
+    if (meals && meals.length) {
+        return storageService.query(DB_KEY)
+    }
+    meals = _createMeals()
+    _saveToStorage(meals)
+    return meals
 }
 
 function getById(mealId) {
-    return storageService.get(DB_KEY,mealId)
+    return storageService.get(DB_KEY, mealId)
 }
 
 function remove(mealId) {
-   return storageService.remove(DB_KEY,mealId)
+    return storageService.remove(DB_KEY, mealId)
 }
 
-function save(meal){
-    if(meal._id) return _update(meal)
+function save(meal) {
+    if (meal._id) return _update(meal)
     else return _add(meal)
 }
 
 function _add(meal) {
     // meal.owener = userService.getLoggedInUser()
-    return storageService.post(DB_KEY,meal)
+    return storageService.post(DB_KEY, meal)
 }
 
 function _update(meal) {
- return storageService.put(DB_KEY,meal)
+    return storageService.put(DB_KEY, meal)
 }
 
 function getEmptyMeal() {
