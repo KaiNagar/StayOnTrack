@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { mealService } from '../services/mealService'
 import { updateMeal } from '../store/actions/mealActions'
 
-// export class MealEdit extends Component {
+// export class _MealEdit extends Component {
 //   state = {
 //     meal: null,
 //   }
@@ -23,10 +23,6 @@ import { updateMeal } from '../store/actions/mealActions'
 //   }
 // }
 
-// export default function MealEdit(props) {
-//   console.log(props)
-//   return <section></section>
-// }
 function _MealEdit(props) {
   const [meal, setMeal] = useState(null)
   const params = useParams()

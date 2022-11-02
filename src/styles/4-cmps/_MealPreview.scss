@@ -7,4 +7,9 @@
         background-color: rgba(219, 215, 215, 0.774);
 
     }
+    .actions{
+        & >*:not(:last-child){
+            margin-right: 1rem;
+        }
+    }
 }
