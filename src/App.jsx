@@ -1,10 +1,10 @@
 import { Component } from 'react'
-import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { Home } from './views/Home'
 import { Login } from './views/Login'
 import { MealPage } from './views/MealPage'
 import AppHeader from './cmps/AppHeader'
-import MealEdit from './views/MealEdit'
+import { MealEdit } from './views/MealEdit'
 import './styles/style.scss'
 
 export class App extends Component {
@@ -29,4 +29,3 @@ export class App extends Component {
     )
   }
 }
-

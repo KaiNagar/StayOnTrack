@@ -1,7 +1,9 @@
 import { Component, useState } from 'react'
 import { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { mealService } from '../services/mealService'
+import { updateMeal } from '../store/actions/mealActions'
 
 // export class MealEdit extends Component {
 //   state = {
@@ -25,8 +27,7 @@ import { mealService } from '../services/mealService'
 //   console.log(props)
 //   return <section></section>
 // }
-
-export default function MealEdit() {
+function _MealEdit(props) {
   const [meal, setMeal] = useState(null)
   const params = useParams()
   useEffect(() => {
@@ -36,8 +37,23 @@ export default function MealEdit() {
   const loadMeal = async () => {
     const mealId = params.id
     const meal = await mealService.getById(mealId)
-    console.log(meal);
+    console.log(meal)
     setMeal(meal)
-  }
-  return <section className='meal-edit'></section>
 }
+// console.log(props);
+  return <section className='meal-edit'>
+ 
+  </section>
+}
+
+const mapStateToProps = (storeState) => {
+  return {
+    meals: storeState.mealModule.meals,
+  }
+}
+
+const mapDispatchToProps = {
+  updateMeal,
+}
+
+export const MealEdit = connect(mapStateToProps, mapDispatchToProps)(_MealEdit)

@@ -24,32 +24,15 @@ const ingredients = [
 
 
 function query(filterBy = null) {
-    let meals = _loadFromStorage()
-    if (!meals) {
-        meals = _createMeals()
-        _saveToStorage(meals)
-    }
-    // if (filterBy && filterBy.text) {
-    //     meals = meals.filter(m => m.name.toLowerCase().includes(filterBy.text))
-    //     console.log(meals);
-    // }
-
-    return Promise.resolve(meals)
-
+    return storageService.query(DB_KEY)
 }
 
 function getById(mealId) {
-    if (!mealId) return Promise.resolve(null)
-    const meals = _loadFromStorage()
-    const meal = meals.find(m => m._id === mealId)
-    return Promise.resolve(meal)
+    return storageService.get(DB_KEY,mealId)
 }
 
 function remove(mealId) {
-    let meals = _loadFromStorage()
-    meals = meals.filter(m => m._id !== mealId)
-    _saveToStorage(meals)
-    return Promise.resolve()
+   return storageService.remove(DB_KEY,mealId)
 }
 
 function save(meal){
@@ -58,19 +41,12 @@ function save(meal){
 }
 
 function _add(meal) {
-    let meals = _loadFromStorage()
-    meal._id = _makeId()
-    meals = [meal, ...meals]
-    _saveToStorage(meals)
-    return Promise.resolve(meal)
+    // meal.owener = userService.getLoggedInUser()
+    return storageService.post(DB_KEY,meal)
 }
 
-function _update(mealId, meal) {
-    let meals = _loadFromStorage()
-    const mealIdx = meals.findIndex(m => m._id === mealId)
-    meals[mealIdx] = meal
-    _saveToStorage(meals)
-    return Promise.resolve(meal)
+function _update(meal) {
+ return storageService.put(DB_KEY,meal)
 }
 
 function getEmptyMeal() {

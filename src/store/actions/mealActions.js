@@ -3,8 +3,8 @@ import { mealService } from "../../services/mealService"
 export function loadMeals() {
     return async (dispatch, getState) => {
         try {
-            // const {filterBy} = getState().mealModule
-            const meals = await mealService.query()
+            const { filterBy } = getState().mealModule
+            const meals = await mealService.query(filterBy)
             dispatch({ type: 'LOAD_MEALS', meals })
         } catch (err) {
             console.error('err', err);

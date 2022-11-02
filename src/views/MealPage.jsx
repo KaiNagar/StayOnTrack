@@ -3,6 +3,11 @@ import { mealService } from '../services/mealService'
 import MealList from '../cmps/MealList'
 import { Link } from 'react-router-dom'
 import { MealFilter } from '../cmps/MealFilter'
+// import { connect } from 'react-redux'
+// import { updateMeal } from '../store/actions/mealActions'
+
+
+
 
 export class MealPage extends Component {
   state = {
@@ -25,6 +30,7 @@ export class MealPage extends Component {
 
   render() {
     const { meals } = this.state
+    // console.log(this.props);
     return (
       <section className='meal-page container'>
         <h1>this is meal page</h1>
@@ -37,3 +43,17 @@ export class MealPage extends Component {
     )
   }
 }
+
+
+// const mapStateToProps = (storeState) => {
+//   return {
+//     meals: storeState.mealModule.meals,
+//   }
+// }
+
+// const mapDispatchToProps = {
+//   updateMeal,
+// }
+
+// export const MealPage = connect(mapStateToProps, mapDispatchToProps)(_MealPage)
+
