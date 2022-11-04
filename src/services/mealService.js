@@ -23,13 +23,15 @@ const ingredients = [
 ]
 
 
-function query(filterBy = null) {
-    let meals = storageService.query(DB_KEY)
-    if (!meals || !meals.length) {
+async function query(filterBy = null) {
+    let meals = await storageService.query(DB_KEY)
+    if (meals && meals.length) return meals
+    else {
         meals = _createMeals()
-        storageService.postMany(DB_KEY, (_createMeals()))
+        await storageService.postMany(DB_KEY, (_createMeals()))
     }
     if (filterBy) meals = filterMeals(filterBy, meals)
+    console.log(meals);
     return meals
 }
 
@@ -63,7 +65,7 @@ function getEmptyMeal() {
     }
 }
 
-function filterMeals({filterBy}, meals) {
+function filterMeals({ filterBy }, meals) {
     let filteredMeals = [...meals]
     if (filterBy.text) {
         filteredMeals = meals.filter(m => m.name.toLowerCase().includes(filterBy.text.toLowerCase()))

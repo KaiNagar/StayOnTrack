@@ -7,16 +7,12 @@ import { connect } from 'react-redux'
 import { loadMeals,removeMeal,setFilterBy } from '../store/actions/mealActions'
 
 export class _MealPage extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     this.props.loadMeals()
   }
   componentWillUnmount() {}
 
   onChangeFilter = (filterBy) => {
-    // console.log(filterBy)
-    // const meals = await mealService.query(filterBy)
-    // console.log(meals);
-    // this.setState({meals})
     this.props.setFilterBy(filterBy)
     this.props.loadMeals()
   }
