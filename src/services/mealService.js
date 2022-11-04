@@ -24,12 +24,12 @@ const ingredients = [
 
 
 function query(filterBy = null) {
-    let meals = _loadFromStorage(DB_KEY)
-    if (meals && meals.length) {
-        return storageService.query(DB_KEY)
+    let meals = storageService.query(DB_KEY)
+    if (!meals || !meals.length) {
+        meals = _createMeals()
+        storageService.postMany(DB_KEY, (_createMeals()))
     }
-    meals = _createMeals()
-    _saveToStorage(meals)
+    if (filterBy) meals = filterMeals(filterBy, meals)
     return meals
 }
 
@@ -63,13 +63,21 @@ function getEmptyMeal() {
     }
 }
 
+function filterMeals({filterBy}, meals) {
+    let filteredMeals = [...meals]
+    if (filterBy.text) {
+        filteredMeals = meals.filter(m => m.name.toLowerCase().includes(filterBy.text.toLowerCase()))
+    }
+    return filteredMeals
+}
+
+
 function _loadFromStorage() {
     return utilService.loadFromStorage(DB_KEY)
 }
 function _saveToStorage(meals) {
     return utilService.saveToStorage(DB_KEY, meals)
 }
-
 function _createMeals() {
     return [
         {
