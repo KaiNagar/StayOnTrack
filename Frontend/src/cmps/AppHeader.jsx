@@ -11,6 +11,9 @@ export const AppHeader = () => {
         <NavLink className='header-link' to='/login'>
           Login
         </NavLink>
+        <NavLink className='header-link' to='/meals'>
+          Meals
+        </NavLink>
       </div>
     </section>
   )

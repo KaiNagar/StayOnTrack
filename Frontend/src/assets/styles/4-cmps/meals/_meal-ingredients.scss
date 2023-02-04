@@ -1,0 +1,17 @@
+.meal-ingredients {
+    margin-top: 0.5rem;
+  .ing {
+    padding: 0.2rem 0.5rem;
+    border-radius: rem(4px);
+  }
+
+  .carb {
+    background-color: yellow;
+  }
+  .protein {
+    background-color: purple;
+  }
+  .vegi {
+    background-color: green;
+  }
+}
