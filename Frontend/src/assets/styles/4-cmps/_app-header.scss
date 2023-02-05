@@ -1,12 +1,35 @@
 .app-header-constainer {
-  background-color: lightblue;
-
-  .app-header {
-    .header-link{
-        margin-right:  1rem;
+  background-color: $clr-mainBlue;
+}
+.app-header {
+  padding: 5px 20px;
+  .logo {
+    img {
+      width: 60px;
     }
-    .active {
-      color: green;
+    .title {
+      font-size: 3rem;
+      color: $clr-secondaryYellow;
+      font-weight: bold;
     }
+  }
+  .header-link {
+    color: $clr-secondaryYellow;
+    font-size: rem(24px);
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    transition: all 0.3s;
+    border-radius: rem(4px);
+    margin-right: 0.5rem;
+    &:hover{
+      background-color: $clr-forthLCream;
+    }
+    
+  }
+  .active {
+    opacity: 1;
+    background-color: $clr-forthLCream;
   }
 }
