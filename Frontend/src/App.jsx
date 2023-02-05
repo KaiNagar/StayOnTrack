@@ -7,6 +7,7 @@ import { Login } from './pages/Login'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { MealsIndex } from './pages/MealsIndex'
+import { MealEdit } from './pages/MealEdit'
 
 export const App = () => {
   return (
@@ -19,6 +20,8 @@ export const App = () => {
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/meals' element={<MealsIndex />} />
+              <Route path='/meal/edit' element={<MealEdit />} />
+              <Route path='/meal/edit/:mealId' element={<MealEdit />} />
             </Routes>
           </div>
         </div>
