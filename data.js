@@ -3,11 +3,13 @@
 const meals = [
     {
         _id: 'meal1',
+        // map array
         ingredients: {
             rice: 200,
             chicken: 150,
             brocoli: 200,
         },
+        // no data base
         totalCal: {
             carbs: 56,
             protein: 45,

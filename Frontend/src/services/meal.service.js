@@ -9,6 +9,9 @@ export const mealService = {
 
 const MEAL_DB = 'meal_db'
 
+// remove totalCal
+
+// SQL 
 async function query() {
     let meals = await storageService.query(MEAL_DB)
     if (!meals || !meals.length) {
@@ -28,7 +31,7 @@ async function saveMeal(meal) {
 }
 
 
-
+// naming, createdAt, miniOwner{ ID,Name,Img?}, removeTotalCal from object - should be dynamic
 const demoMeals = [
     {
         _id: 'meal1',

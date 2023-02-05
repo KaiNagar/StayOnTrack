@@ -1,6 +1,34 @@
-.meal-preview{
-    
-    .meal-img{
-        
+.meal-preview {
+  border: 1px solid $clr-border;
+  border-radius: 0.25rem;
+  .meal-img {
+    img {
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
     }
+  }
+  .meal-stats{
+    padding: 0.3rem;
+    flex: 1;
+  }
+
+
+
+  .ing,.cal {
+    padding: 0.2rem 0.5rem;
+    border-radius: rem(4px);
+  }
+
+  .carb {
+    background-color: yellow;
+  }
+  .protein {
+    background-color: purple;
+  }
+  .vegi {
+    background-color: green;
+  }
+  .fat{
+    background-color: grey;
+  }
 }

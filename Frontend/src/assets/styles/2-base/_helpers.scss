@@ -101,6 +101,12 @@
   cursor: no-drop;
 }
 
+.divider{
+  width: 100%;
+  height: 1px;
+  background-color: $clr-Lgrey
+}
+
 // Aspect ratios
 
 .ratio-16-9 {

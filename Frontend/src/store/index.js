@@ -20,3 +20,7 @@ export const store = createStore(
 );
 
 window.store = store;
+
+// meal actions 
+// meal reducer
+// shopping cart

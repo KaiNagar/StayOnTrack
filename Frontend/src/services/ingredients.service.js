@@ -26,7 +26,7 @@ async function saveIngredient(ingredient) {
     }
 }
 
-
+// imgUrl
 const demoIngredients = [
     {
         _id: 'ing1',
