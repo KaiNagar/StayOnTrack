@@ -1,6 +1,13 @@
 .meal-preview {
   border: 1px solid $clr-border;
   border-radius: 0.25rem;
+  .meal-title{
+    text-align: center;
+    padding: 0.3rem 0.1rem;
+    border-bottom: 1px solid $clr-border;
+    font-size: rem(18px);
+    font-weight: bold;
+  }
   .meal-img {
     img {
       border-top-left-radius: 0.25rem;
