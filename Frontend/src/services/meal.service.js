@@ -5,7 +5,9 @@ import { utilService } from "./util.service"
 
 export const mealService = {
     query,
-    saveMeal
+    saveMeal,
+    getEmptyMeal,
+    getMealById
 }
 
 const MEAL_DB = 'meal_db'
@@ -32,6 +34,10 @@ async function saveMeal(meal) {
     }
 }
 
+async function getMealById(mealId){
+    return await storageService.get(MEAL_DB,mealId)
+}
+
 
 async function _calcTotalCal(meal) {
     const ingredients = await ingredientsService.query()
@@ -39,14 +45,26 @@ async function _calcTotalCal(meal) {
         const { calPer100 } = ingredients.find(i => i._id === ing.id)
         for (let type in calPer100) {
             if (!acc[type]) acc[type] = 0
-            acc[type] += Math.round(calPer100[type] * (ing.amount/100))
-            
+            acc[type] += Math.round(calPer100[type] * (ing.amount / 100))
+
         }
         return acc
     }, {})
     return {
         ...meal,
         totalCals: mealCals
+    }
+}
+
+function getEmptyMeal() {
+    return {
+        _id: utilService.makeId(),
+        isPreMade: false,
+        name: '',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+
+        ],
     }
 }
 
@@ -62,19 +80,19 @@ const demoMeals = [
             {
                 id: 'ing1',
                 name: 'rice',
-                type:'carb',
+                type: 'carb',
                 amount: 200
             },
             {
                 id: 'ing5',
                 name: 'chicken',
-                type:'protein',
+                type: 'protein',
                 amount: 150
             },
             {
                 id: 'ing9',
                 name: 'brocoli',
-                type:'vegi',
+                type: 'vegi',
                 amount: 200
             },
         ],
@@ -88,19 +106,19 @@ const demoMeals = [
             {
                 id: 'ing2',
                 name: 'pasta',
-                type:'carb',
+                type: 'carb',
                 amount: 150
             },
             {
                 id: 'ing6',
                 name: 'ground-beef',
-                type:'protein',
+                type: 'protein',
                 amount: 200
             },
             {
                 id: 'ing10',
                 name: 'green-beens',
-                type:'vegi',
+                type: 'vegi',
                 amount: 100
             },
         ],
@@ -114,19 +132,19 @@ const demoMeals = [
             {
                 id: 'ing1',
                 name: 'rice',
-                type:'carb',
+                type: 'carb',
                 amount: 200
             },
             {
                 id: 'ing5',
                 name: 'chicken',
-                type:'protein',
+                type: 'protein',
                 amount: 150
             },
             {
                 id: 'ing9',
                 name: 'brocoli',
-                type:'vegi',
+                type: 'vegi',
                 amount: 200
             },
         ],
@@ -140,19 +158,19 @@ const demoMeals = [
             {
                 id: 'ing2',
                 name: 'pasta',
-                type:'carb',
+                type: 'carb',
                 amount: 150
             },
             {
                 id: 'ing6',
                 name: 'ground-beef',
-                type:'protein',
+                type: 'protein',
                 amount: 200
             },
             {
                 id: 'ing10',
                 name: 'green-beens',
-                type:'vegi',
+                type: 'vegi',
                 amount: 100
             },
         ],
@@ -166,19 +184,19 @@ const demoMeals = [
             {
                 id: 'ing1',
                 name: 'rice',
-                type:'carb',
+                type: 'carb',
                 amount: 200
             },
             {
                 id: 'ing5',
                 name: 'chicken',
-                type:'protein',
+                type: 'protein',
                 amount: 150
             },
             {
                 id: 'ing9',
                 name: 'brocoli',
-                type:'vegi',
+                type: 'vegi',
                 amount: 200
             },
         ],
@@ -192,19 +210,19 @@ const demoMeals = [
             {
                 id: 'ing2',
                 name: 'pasta',
-                type:'carb',
+                type: 'carb',
                 amount: 150
             },
             {
                 id: 'ing6',
                 name: 'ground-beef',
-                type:'protein',
+                type: 'protein',
                 amount: 200
             },
             {
                 id: 'ing10',
                 name: 'green-beens',
-                type:'vegi',
+                type: 'vegi',
                 amount: 100
             },
         ],
