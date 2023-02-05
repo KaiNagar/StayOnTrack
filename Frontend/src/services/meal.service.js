@@ -1,4 +1,5 @@
 import { storageService } from "./async-storage.service"
+import { ingredientsService } from "./ingredients.service"
 import { utilService } from "./util.service"
 
 
@@ -18,7 +19,8 @@ async function query() {
         meals = demoMeals
         utilService.saveToStorage(MEAL_DB, meals)
     }
-    return meals
+    return Promise.all(meals.map(m => _calcTotalCal(m)))
+    // return meals
 }
 
 
@@ -31,102 +33,181 @@ async function saveMeal(meal) {
 }
 
 
-// naming, createdAt, miniOwner{ ID,Name,Img?}, removeTotalCal from object - should be dynamic
+async function _calcTotalCal(meal) {
+    const ingredients = await ingredientsService.query()
+    const mealCals = meal.ingredients.reduce((acc, ing) => {
+        const { calPer100 } = ingredients.find(i => i._id === ing.id)
+        for (let type in calPer100) {
+            if (!acc[type]) acc[type] = 0
+            acc[type] += Math.round(calPer100[type] * (ing.amount/100))
+            
+        }
+        return acc
+    }, {})
+    return {
+        ...meal,
+        totalCals: mealCals
+    }
+}
+
+
+// naming--, createdAt, miniOwner{ ID,Name,Img?}, removeTotalCal from object - should be dynamic
 const demoMeals = [
     {
         _id: 'meal1',
+        name: 'The HardCore',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            rice: 200,
-            chicken: 150,
-            brocoli: 200,
-        },
-        totalCal: {
-            carbs: 56,
-            protein: 45,
-            fat: 14,
-            kcal: 768
-        }
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing1',
+                name: 'rice',
+                type:'carb',
+                amount: 200
+            },
+            {
+                id: 'ing5',
+                name: 'chicken',
+                type:'protein',
+                amount: 150
+            },
+            {
+                id: 'ing9',
+                name: 'brocoli',
+                type:'vegi',
+                amount: 200
+            },
+        ],
     },
     {
         _id: 'meal2',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            pasta: 150,
-            'ground-beef': 200,
-            'green-beens': 100,
-        },
-        totalCal: {
-            carbs: 48,
-            protein: 65,
-            fat: 8.6,
-            kcal: 859
-        }
+        name: 'The Picky',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing2',
+                name: 'pasta',
+                type:'carb',
+                amount: 150
+            },
+            {
+                id: 'ing6',
+                name: 'ground-beef',
+                type:'protein',
+                amount: 200
+            },
+            {
+                id: 'ing10',
+                name: 'green-beens',
+                type:'vegi',
+                amount: 100
+            },
+        ],
     },
     {
         _id: 'meal3',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            rice: 200,
-            chicken: 150,
-            brocoli: 200,
-        },
-        totalCal: {
-            carbs: 56,
-            protein: 45,
-            fat: 14,
-            kcal: 768
-        }
+        name: 'The HardCore2',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing1',
+                name: 'rice',
+                type:'carb',
+                amount: 200
+            },
+            {
+                id: 'ing5',
+                name: 'chicken',
+                type:'protein',
+                amount: 150
+            },
+            {
+                id: 'ing9',
+                name: 'brocoli',
+                type:'vegi',
+                amount: 200
+            },
+        ],
     },
     {
         _id: 'meal4',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            pasta: 150,
-            'ground-beef': 200,
-            'green-beens': 100,
-        },
-        totalCal: {
-            carbs: 48,
-            protein: 65,
-            fat: 8.6,
-            kcal: 859
-        }
+        name: 'The Picky2',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing2',
+                name: 'pasta',
+                type:'carb',
+                amount: 150
+            },
+            {
+                id: 'ing6',
+                name: 'ground-beef',
+                type:'protein',
+                amount: 200
+            },
+            {
+                id: 'ing10',
+                name: 'green-beens',
+                type:'vegi',
+                amount: 100
+            },
+        ],
     },
     {
         _id: 'meal5',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            rice: 200,
-            chicken: 150,
-            brocoli: 200,
-        },
-        totalCal: {
-            carbs: 56,
-            protein: 45,
-            fat: 14,
-            kcal: 768
-        }
+        name: 'The HardCore3',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing1',
+                name: 'rice',
+                type:'carb',
+                amount: 200
+            },
+            {
+                id: 'ing5',
+                name: 'chicken',
+                type:'protein',
+                amount: 150
+            },
+            {
+                id: 'ing9',
+                name: 'brocoli',
+                type:'vegi',
+                amount: 200
+            },
+        ],
     },
     {
         _id: 'meal6',
         isPreMade: true,
-        imgUrl:'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
-        ingredients: {
-            pasta: 150,
-            'ground-beef': 200,
-            'green-beens': 100,
-        },
-        totalCal: {
-            carbs: 48,
-            protein: 65,
-            fat: 8.6,
-            kcal: 859
-        }
+        name: 'The Picky3',
+        imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
+        ingredients: [
+            {
+                id: 'ing2',
+                name: 'pasta',
+                type:'carb',
+                amount: 150
+            },
+            {
+                id: 'ing6',
+                name: 'ground-beef',
+                type:'protein',
+                amount: 200
+            },
+            {
+                id: 'ing10',
+                name: 'green-beens',
+                type:'vegi',
+                amount: 100
+            },
+        ],
     },
 ]
+

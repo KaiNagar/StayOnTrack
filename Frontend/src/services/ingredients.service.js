@@ -26,6 +26,7 @@ async function saveIngredient(ingredient) {
     }
 }
 
+
 // imgUrl
 const demoIngredients = [
     {
