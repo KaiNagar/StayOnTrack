@@ -1,9 +1,11 @@
+import { NavLink } from 'react-router-dom'
 import { IngredientsList } from '../ingredients/IngredientsList'
 import { MealCal } from './MealCal'
 
 export const MealPreview = ({ meal }) => {
+
   return (
-    <section className='meal-preview flex column '>
+    <NavLink to={`/meal/edit/${meal._id}`} className='meal-preview flex column'>
       <h1 className='meal-title'>{meal.name}</h1>
       <div className='meal-img'>
         <img src={meal.imgUrl} alt='Meal Img' />
@@ -12,6 +14,6 @@ export const MealPreview = ({ meal }) => {
         <IngredientsList ings={meal.ingredients} />
         <MealCal cal={meal.totalCals} />
       </div>
-    </section>
+    </NavLink>
   )
 }

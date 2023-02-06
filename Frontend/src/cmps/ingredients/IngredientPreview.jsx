@@ -1,8 +1,8 @@
 export const IngredientPreview = ({ ing }) => {
 
 
-  const getIngName = () => {
-    const ingNameSplited = ing.name.split('-')
+  const getIngName = (name) => {
+    const ingNameSplited = name.split('-')
     let ingName = ''
     ingNameSplited.map((partName, idx) => {
       if (idx > 0) ingName += ' '
@@ -14,7 +14,7 @@ export const IngredientPreview = ({ ing }) => {
   
   return (
     <section className={`ingredient-preview ing ${ing.type}`}>
-      {getIngName()}: {ing.amount}
+      {getIngName(ing.name)}: {ing.amount}
     </section>
   )
 }

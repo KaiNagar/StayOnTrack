@@ -1,12 +1,20 @@
 .meal-preview {
   border: 1px solid $clr-border;
   border-radius: 0.25rem;
-  .meal-title{
+  position: relative;
+  &:hover{
+
+    text-decoration: none;
+  }
+  .meal-title {
     text-align: center;
     padding: 0.3rem 0.1rem;
     border-bottom: 1px solid $clr-border;
     font-size: rem(18px);
     font-weight: bold;
+    &:hover .remove-meal-btn {
+      opacity: 1;
+    }
   }
   .meal-img {
     img {
@@ -14,14 +22,22 @@
       border-top-right-radius: 0.25rem;
     }
   }
-  .meal-stats{
+  .meal-stats {
     padding: 0.3rem;
     flex: 1;
   }
+  .remove-meal-btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: $clr-border;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-
-
-  .ing,.cal {
+  .ing,
+  .cal {
     padding: 0.2rem 0.5rem;
     border-radius: rem(4px);
   }
@@ -35,7 +51,7 @@
   .vegi {
     background-color: green;
   }
-  .fat{
+  .fat {
     background-color: grey;
   }
 }
