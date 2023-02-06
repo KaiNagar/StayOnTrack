@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export const LOAD_INGREDIENTS = 'LOAD_INGREDIENTS'
 
-export function ingredientsReducer(state = INITIAL_STATE, action) {
+export function ingredientReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'LOAD_INGREDIENTS':
             return {

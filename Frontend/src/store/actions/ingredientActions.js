@@ -1,6 +1,6 @@
 import { store } from "../index.js";
 import { ingredientsService } from "../../services/ingredients.service";
-import { LOAD_INGREDIENTS } from "../reducers/ingredientsReducer";
+import { LOAD_INGREDIENTS } from "../reducers/ingredientReducer";
 
 export async function loadIngredients() {
         try {
