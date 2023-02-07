@@ -1,8 +1,8 @@
 import { IngredientPreview } from "./IngredientPreview"
 
-export const IngredientsList = ({ ings }) => {
+export const IngredientList = ({ ings,dynamicClass }) => {
   return (
-    <section className='ingredients-list flex'>
+    <section className={`ingredients-list flex ${dynamicClass}`}>
         {ings.map(ing=> <IngredientPreview key={ing.id} ing={ing} /> )}
     </section>
   )

@@ -8,6 +8,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { MealsIndex } from './pages/MealsIndex'
 import { MealEdit } from './pages/MealEdit'
+import { MealDetails } from './pages/MealDetails'
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
               <Route path='/meals' element={<MealsIndex />} />
               <Route path='/meal/edit' element={<MealEdit />} />
               <Route path='/meal/edit/:mealId' element={<MealEdit />} />
+              <Route path='/meal/:mealId' element={<MealDetails />} />
             </Routes>
           </div>
         </div>

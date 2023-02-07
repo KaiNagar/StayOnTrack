@@ -1,6 +1,7 @@
 import { MealPreview } from './MealPreview'
 
-export const MealsList = ({ meals }) => {
+export const MealList = ({ meals }) => {
+  
   return (
     <section className='meals-list'>
       {meals.map((meal) => (
