@@ -4,8 +4,8 @@ import { ADD_MEAL, LOAD_MEALS, REMOVE_MEAL, SET_FILTER, UNDO_REMOVE_MEAL, UPDATE
 
 export async function loadMeals() {
     try {
-        // const {filterBy} = getState().ingredientsModule
-        const meals = await mealService.query()
+        const {filterBy} = store.getState().mealModule
+        const meals = await mealService.query(filterBy)
         store.dispatch({ type: LOAD_MEALS, meals })
         return meals
     } catch (err) {

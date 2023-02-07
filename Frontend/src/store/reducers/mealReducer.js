@@ -1,5 +1,8 @@
+import { mealService } from "../../services/meal.service"
+
 const INITIAL_STATE = {
     meals: [],
+    filterBy: mealService.getEmptyFilterBy()
     // isCartShown:false
     // shoppingCart:[]
 }

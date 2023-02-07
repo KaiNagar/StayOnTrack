@@ -1,0 +1,44 @@
+.meal-details{
+    .back-btn{
+        align-self: flex-start;
+    }
+
+
+    .meal-img{
+        width: 50%;
+        
+    }
+
+    .meal-info{
+
+    }
+
+
+    .meal-ingredients{
+
+    }
+    .ings-in-details,.cals-in-details{
+        font-size: 2rem;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .ing,
+  .cal {
+    padding: 0.2rem 0.5rem;
+    border-radius: rem(4px);
+  }
+
+  .carb {
+    background-color: yellow;
+  }
+  .protein {
+    background-color: purple;
+  }
+  .vegi {
+    background-color: green;
+  }
+  .fat {
+    background-color: grey;
+  }
+}

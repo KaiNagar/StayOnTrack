@@ -8,7 +8,8 @@ export const mealService = {
     saveMeal,
     getEmptyMeal,
     getMealById,
-    removeMeal
+    removeMeal,
+    getEmptyFilterBy
 }
 
 const MEAL_DB = 'meal_db'
@@ -16,12 +17,13 @@ const MEAL_DB = 'meal_db'
 // remove totalCal
 
 // SQL 
-async function query() {
+async function query(filterBy) {
     let meals = await storageService.query(MEAL_DB)
     if (!meals || !meals.length) {
         meals = demoMeals
         utilService.saveToStorage(MEAL_DB, meals)
     }
+    if (filterBy) meals = _filterMeals(meals, filterBy)
     return Promise.all(meals.map(m => _calcTotalCal(m)))
 }
 
@@ -40,7 +42,20 @@ async function removeMeal(mealId) {
 }
 
 async function getMealById(mealId) {
-    return await storageService.get(MEAL_DB, mealId)
+    const meal = await storageService.get(MEAL_DB, mealId)
+    return _calcTotalCal(meal)
+}
+
+function _filterMeals(meals, filterBy) {
+    let filteredMeals = meals
+    if (filterBy.isPreMade) {
+        filteredMeals = filteredMeals.filter(m => m.isPreMade)
+    }
+    if (filterBy.text) {
+        const regex = new RegExp(filterBy.text, 'i' )
+        filteredMeals = filteredMeals.filter(m => regex.test(m.name))
+    }
+    return filteredMeals
 }
 
 
@@ -61,6 +76,13 @@ async function _calcTotalCal(meal) {
     }
 }
 
+function getEmptyFilterBy() {
+    return {
+        isPreMade: true,
+        text: ''
+    }
+}
+
 function getEmptyMeal() {
     return {
         isPreMade: false,
@@ -68,29 +90,29 @@ function getEmptyMeal() {
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing1',
-                name: 'rice',
+                id: utilService.makeId(),
+                name: '',
                 type: 'carb',
-                amount: 200
+                amount: 0
             },
             {
-                id: 'ing5',
-                name: 'chicken',
+                id: utilService.makeId(),
+                name: '',
                 type: 'protein',
-                amount: 150
+                amount: 0
             },
             {
-                id: 'ing9',
-                name: 'brocoli',
+                id: utilService.makeId(),
+                name: '',
                 type: 'vegi',
-                amount: 200
+                amount: 0
             },
         ],
     }
 }
 
 
-// naming--, createdAt, miniOwner{ ID,Name,Img?}, removeTotalCal from object - should be dynamic
+// naming--, createdAt, miniOwner{ ID,Name,Img?}, removeTotalCal from object - should be dynamic---
 const demoMeals = [
     {
         _id: 'meal1',
