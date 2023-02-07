@@ -23,8 +23,9 @@ async function query(filterBy) {
         meals = demoMeals
         utilService.saveToStorage(MEAL_DB, meals)
     }
+    meals = await Promise.all(meals.map(m => _calcTotalCal(m)))
     if (filterBy) meals = _filterMeals(meals, filterBy)
-    return Promise.all(meals.map(m => _calcTotalCal(m)))
+    return meals
 }
 
 
@@ -52,9 +53,28 @@ function _filterMeals(meals, filterBy) {
         filteredMeals = filteredMeals.filter(m => m.isPreMade)
     }
     if (filterBy.text) {
-        const regex = new RegExp(filterBy.text, 'i' )
+        const regex = new RegExp(filterBy.text, 'i')
         filteredMeals = filteredMeals.filter(m => regex.test(m.name))
     }
+    if (filterBy.minCarb) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.carbs > filterBy.minCarb)
+    }
+    if (filterBy.maxCarb) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.carbs < filterBy.maxCarb)
+    }
+    if (filterBy.minProtein) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.protein > filterBy.minProtein)
+    }
+    if (filterBy.maxProtein) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.protein < filterBy.maxProtein)
+    }
+    if (filterBy.minFat) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.fat > filterBy.minFat)
+    }
+    if (filterBy.maxFat) {
+        filteredMeals = filteredMeals.filter(m => m.totalCals.fat < filterBy.maxFat)
+    }
+    
     return filteredMeals
 }
 
@@ -79,7 +99,13 @@ async function _calcTotalCal(meal) {
 function getEmptyFilterBy() {
     return {
         isPreMade: true,
-        text: ''
+        text: '',
+        minCarb: '',
+        maxCarb: '',
+        minProtein: '',
+        maxProtein: '',
+        minFat: '',
+        maxFat: '',
     }
 }
 

@@ -16,11 +16,13 @@
 @import './5-pages/home-page';
 @import './5-pages/login-page';
 
+@import './5-pages/meals/meal-index';
 @import './5-pages/meals/meal-details';
 
 // cmps
 @import './4-cmps/app-header';
 
+@import './4-cmps/meals/meal-filter';
 @import './4-cmps/meals/meals-list';
 @import './4-cmps/meals/meal-preview';
 @import './4-cmps/meals/meal-calories';

@@ -1,0 +1,14 @@
+.meal-filter {
+  gap: 0.5rem;
+  background-color: green;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  .filter-carbs,
+  .filter-protein,
+  .filter-fat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
