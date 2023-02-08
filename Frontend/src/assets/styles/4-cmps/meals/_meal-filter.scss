@@ -1,14 +1,35 @@
 .meal-filter {
   gap: 0.5rem;
-  background-color: green;
   padding: 0.5rem;
   position: absolute;
   z-index: 1;
+  background-color: $clr-thirdCream;
+  border: 2px solid $clr-border;
+  border-radius: rem(4px);
+  top: 40px;
+  left: 0;
   .filter-carbs,
   .filter-protein,
   .filter-fat {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+  input{
+    font-size: rem(18px);
+    border-radius: rem(4px);
+    border: 1px solid $clr-border;
+    background-color: $clr-Lgrey;
+    transition: all 0.3s;
+    padding: 0.3rem;
+    &:focus{
+      background-color: $clr-white;
+      border: 1px solid $clr-mainBlue;
+      outline: 1px solid $clr-mainBlue;
+    }
+    &.full{
+      background-color: $clr-white;
+
+    }
   }
 }

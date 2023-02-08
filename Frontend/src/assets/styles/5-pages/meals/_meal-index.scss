@@ -1,7 +1,21 @@
-.meal-index{
-    // .filter-screen{
-    //     background-color: gray;
-    //     width: 100%;
-    //     height: 100%;
-    // }
+.meal-index {
+  .meal-subheader {
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .filter-btn {
+    cursor: pointer;
+    border: 2px solid $clr-border;
+    border-radius: rem(4px);
+    padding: 0.4rem;
+    transition: all 0.3s;
+    box-shadow: 0 0 1px 1px hwb(0deg 0% 100% / 20%);
+    width: min-content;
+    font-size: rem(20px);
+    color: $clr-mainBlue;
+    &.filter-open {
+        box-shadow:inset 0 0 1px 1px hwb( 0deg 0% 100% / 10%);
+      background-color: $clr-thirdCream;
+    }
+  }
 }

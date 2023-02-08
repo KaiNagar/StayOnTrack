@@ -1,5 +1,6 @@
 import { useForm } from '../../customHooks/useForm'
 
+
 export const MealFilter = ({ filterBy, onSetFilterBy }) => {
   const [filterByToEdit, setFilterByToEdit, handleChange] = useForm(
     filterBy,
@@ -10,7 +11,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
     <section className='meal-filter flex column'>
       <label htmlFor='text'>Filter by text</label>
       <input
-        className='text-filter'
+        className={`text-filter ${filterByToEdit.text && 'full'}`}
         type='text'
         placeholder='Search your perfect meal'
         name='text'
@@ -23,7 +24,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Min amount'
-          className='min-carb-filter'
+          className={`min-carb-filter ${filterByToEdit.minCarb && 'full'}`}
           id='minCarb'
           name='minCarb'
           onChange={handleChange}
@@ -33,7 +34,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Max amount'
-          className='max-carb-filter'
+          className={`max-carb-filter ${filterByToEdit.maxCarb && 'full'}`}
           id='maxCarb'
           name='maxCarb'
           onChange={handleChange}
@@ -45,7 +46,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Min amount'
-          className='min-protein-filter'
+          className={`min-protein-filter ${filterByToEdit.minProtein && 'full'}`}
           id='minProtein'
           name='minProtein'
           onChange={handleChange}
@@ -55,7 +56,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Max amount'
-          className='max-protein-filter'
+          className={`max-protein-filter ${filterByToEdit.maxProtein && 'full'}`}
           id='maxProtein'
           name='maxProtein'
           onChange={handleChange}
@@ -67,7 +68,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Min amount'
-          className='min-fat-filter'
+          className={`min-fat-filter ${filterByToEdit.minFat && 'full'}`}
           id='minFat'
           name='minFat'
           onChange={handleChange}
@@ -77,7 +78,7 @@ export const MealFilter = ({ filterBy, onSetFilterBy }) => {
         <input
           type='text'
           placeholder='Max amount'
-          className='max-protein-filter'
+          className={`max-protein-filter ${filterByToEdit.maxFat && 'full'}`}
           id='maxFat'
           name='maxFat'
           onChange={handleChange}
