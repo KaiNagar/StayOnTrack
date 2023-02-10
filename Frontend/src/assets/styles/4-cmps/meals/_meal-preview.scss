@@ -26,6 +26,11 @@
     padding: 0.3rem;
     flex: 1;
   }
+  .add-btn{
+    @include back-btn;
+    border-top-left-radius: 0;
+    border-top-right-radius:0 ;
+  }
   .remove-meal-btn {
     position: absolute;
     background-color: transparent;
@@ -42,16 +47,16 @@
     border-radius: rem(4px);
   }
 
-  .carb {
-    background-color: yellow;
-  }
-  .protein {
-    background-color: purple;
-  }
-  .vegis {
-    background-color: green;
-  }
-  .fat {
-    background-color: grey;
-  }
+  // .carb {
+  //   background-color: $clr-carb;
+  // }
+  // .protein {
+  //   background-color: $clr-protein;
+  // }
+  // .vegis {
+  //   background-color: $clr-vegis;
+  // }
+  // .fat {
+  //   background-color: $clr-fat;
+  // }
 }

@@ -1,5 +1,4 @@
 export const MealTableNutrition = ({ meal }) => {
-  console.log(meal)
   const getIngName = (name) => {
     const ingNameSplited = name.split('-')
     let ingName = ''
@@ -19,7 +18,6 @@ export const MealTableNutrition = ({ meal }) => {
       <div className='fat th row1'>Fat</div>
       <div className='calories th row1'>Calories</div>
       {meal.ingredients.map((ing, idx) => {
-        console.log(ing)
         const { carbs, protein, fat, kcal } = ing.calPer100
         const currentIngNut = Math.ceil(ing.amount / 100)
         return (

@@ -87,12 +87,10 @@ async function _calcTotalCal(meal) {
         fullMeal.ingredients[idx] = { ...fullMeal.ingredients[idx], ...currentIngredient }
         for (let type in currentIngredient.calPer100) {
             if (!acc[type]) acc[type] = 0
-            acc[type] += Math.round(currentIngredient.calPer100[type] * (ing.amount / 100))
-
+            acc[type] += Math.round(currentIngredient.calPer100[type] * (ing.amount / 100)) // round is not good in here!!!!!
         }
         return acc
     }, {})
-    console.log(fullMeal);
     return fullMeal
 }
 

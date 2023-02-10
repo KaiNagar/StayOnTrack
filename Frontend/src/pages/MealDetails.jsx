@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { IngredientList } from '../cmps/ingredients/IngredientList'
-import { MealCal } from '../cmps/meals/MealCal'
 import { MealTableNutrition } from '../cmps/meals/MealTableNutrition'
 import { mealService } from '../services/meal.service'
 
@@ -25,7 +23,6 @@ export const MealDetails = () => {
   }
 
   if (!meal) return <div>Loading meal</div>
-  console.log(meal)
 
   return (
     <section className='meal-details flex column space-between'>

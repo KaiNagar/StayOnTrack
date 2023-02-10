@@ -26,6 +26,11 @@ export const MealIndex = () => {
     setIsFilterOpen((prevState) => !prevState)
   }
 
+  const onAddToCart = (ev, mealId) => {
+    ev.preventDefault()
+    console.log(mealId)
+  }
+
   if (!meals) return <div>Loading meals...</div>
 
   return (
@@ -42,7 +47,7 @@ export const MealIndex = () => {
           <MealFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         )}
       </div>
-      <MealList meals={meals} />
+      <MealList meals={meals} onAddToCart={onAddToCart} />
       {!meals.length && <div>No meals to show</div>}
     </section>
   )
