@@ -74,26 +74,26 @@ function _filterMeals(meals, filterBy) {
     if (filterBy.maxFat) {
         filteredMeals = filteredMeals.filter(m => m.totalCals.fat < filterBy.maxFat)
     }
-    
+
     return filteredMeals
 }
 
 
 async function _calcTotalCal(meal) {
     const ingredients = await ingredientsService.query()
-    const mealCals = meal.ingredients.reduce((acc, ing) => {
-        const { calPer100 } = ingredients.find(i => i._id === ing.id)
-        for (let type in calPer100) {
+    const fullMeal = structuredClone(meal)
+    fullMeal.totalCals = meal.ingredients.reduce((acc, ing, idx) => {
+        const currentIngredient = ingredients.find(i => i._id === ing._id)
+        fullMeal.ingredients[idx] = { ...fullMeal.ingredients[idx], ...currentIngredient }
+        for (let type in currentIngredient.calPer100) {
             if (!acc[type]) acc[type] = 0
-            acc[type] += Math.round(calPer100[type] * (ing.amount / 100))
+            acc[type] += Math.round(currentIngredient.calPer100[type] * (ing.amount / 100))
 
         }
         return acc
     }, {})
-    return {
-        ...meal,
-        totalCals: mealCals
-    }
+    console.log(fullMeal);
+    return fullMeal
 }
 
 function getEmptyFilterBy() {
@@ -147,21 +147,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing1',
-                name: 'rice',
-                type: 'carb',
+                _id: 'ing1',
                 amount: 200
             },
             {
-                id: 'ing5',
-                name: 'chicken',
-                type: 'protein',
+                _id: 'ing5',
                 amount: 150
             },
             {
-                id: 'ing9',
-                name: 'brocoli',
-                type: 'vegi',
+                _id: 'ing9',
                 amount: 200
             },
         ],
@@ -173,21 +167,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing2',
-                name: 'pasta',
-                type: 'carb',
+                _id: 'ing2',
                 amount: 150
             },
             {
-                id: 'ing6',
-                name: 'ground-beef',
-                type: 'protein',
+                _id: 'ing6',
                 amount: 200
             },
             {
-                id: 'ing10',
-                name: 'green-beens',
-                type: 'vegi',
+                _id: 'ing10',
                 amount: 100
             },
         ],
@@ -199,21 +187,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing1',
-                name: 'rice',
-                type: 'carb',
+                _id: 'ing1',
                 amount: 200
             },
             {
-                id: 'ing5',
-                name: 'chicken',
-                type: 'protein',
+                _id: 'ing5',
                 amount: 150
             },
             {
-                id: 'ing9',
-                name: 'brocoli',
-                type: 'vegi',
+                _id: 'ing9',
                 amount: 200
             },
         ],
@@ -225,21 +207,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing2',
-                name: 'pasta',
-                type: 'carb',
+                _id: 'ing2',
                 amount: 150
             },
             {
-                id: 'ing6',
-                name: 'ground-beef',
-                type: 'protein',
+                _id: 'ing6',
                 amount: 200
             },
             {
-                id: 'ing10',
-                name: 'green-beens',
-                type: 'vegi',
+                _id: 'ing10',
                 amount: 100
             },
         ],
@@ -251,21 +227,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing1',
-                name: 'rice',
-                type: 'carb',
+                _id: 'ing1',
                 amount: 200
             },
             {
-                id: 'ing5',
-                name: 'chicken',
-                type: 'protein',
+                _id: 'ing5',
                 amount: 150
             },
             {
-                id: 'ing9',
-                name: 'brocoli',
-                type: 'vegi',
+                _id: 'ing9',
                 amount: 200
             },
         ],
@@ -277,21 +247,15 @@ const demoMeals = [
         imgUrl: 'https://www.budgetbytes.com/wp-content/uploads/2023/01/Ranch-Chicken-Meal-Prep-lined-up.jpg',
         ingredients: [
             {
-                id: 'ing2',
-                name: 'pasta',
-                type: 'carb',
+                _id: 'ing2',
                 amount: 150
             },
             {
-                id: 'ing6',
-                name: 'ground-beef',
-                type: 'protein',
+                _id: 'ing6',
                 amount: 200
             },
             {
-                id: 'ing10',
-                name: 'green-beens',
-                type: 'vegi',
+                _id: 'ing10',
                 amount: 100
             },
         ],
