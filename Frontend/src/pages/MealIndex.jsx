@@ -11,7 +11,7 @@ import { FiFilter } from 'react-icons/fi'
 export const MealIndex = () => {
   const { meals } = useSelector((state) => state.mealModule)
   const { filterBy } = useSelector((state) => state.mealModule)
-  const [isFilterOpen, setIsFilterOpen] = useState(true)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
   useEffect(() => {
     loadMeals()
