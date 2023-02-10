@@ -85,6 +85,21 @@
     background-color: #00000029;
   }
 }
+
+@mixin back-btn {
+  border: none;
+  background-color: $clr-secondaryYellow;
+  padding: 0.6rem 1.6rem;
+  border-radius: rem(4px);
+  font-size: rem(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: darken($clr-secondaryYellow, 20%);
+  }
+}
+
 @mixin active {
   background-color: #e4f0f6;
   border: none;

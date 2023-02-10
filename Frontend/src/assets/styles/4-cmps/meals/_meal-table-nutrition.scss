@@ -1,0 +1,27 @@
+.meal-table-nutrition {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  margin-bottom: 1rem;
+  border: 2px solid $clr-grey;
+  border-right: none;
+
+  .th {
+    font-weight: bold;
+  }
+  .th,
+  .td {
+    padding: 0.8rem 0;
+    padding-left: 0.4rem;
+    border-right: 1px solid $clr-grey;
+  }
+
+  .row1,
+  .row3,
+  .row5 {
+    background-color: $clr-thirdCream;
+  }
+  .row2,
+  .row4 {
+    background-color: $clr-forthLCream;
+  }
+}

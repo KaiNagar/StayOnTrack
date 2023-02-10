@@ -1,44 +1,31 @@
-.meal-details{
-    .back-btn{
-        align-self: flex-start;
+.meal-details {
+  .meal-details-actions {
+    margin-block-end: 1rem;
+    .back-btn {
+      @include back-btn;
+      align-self: flex-start;
     }
-
-
-    .meal-img{
-        width: 50%;
-        
+    .add-to-cart-btn {
+      @include back-btn;
     }
-
-    .meal-info{
-
-    }
-
-
-    .meal-ingredients{
-
-    }
-    .ings-in-details,.cals-in-details{
-        font-size: 2rem;
-        gap: 1rem;
-        justify-content: space-between;
-    }
-
-    .ing,
-  .cal {
-    padding: 0.2rem 0.5rem;
-    border-radius: rem(4px);
   }
 
-  .carb {
-    background-color: yellow;
+  .meal-img {
+    width: 50%;
+    img {
+      border-radius: rem(8px);
+      border: 2px solid $clr-grey;
+    }
   }
-  .protein {
-    background-color: purple;
-  }
-  .vegi {
-    background-color: green;
-  }
-  .fat {
-    background-color: grey;
+
+  .meal-info {
+    flex: 1;
+    margin-inline-start: 2rem;
+    .meal-name {
+      font-size: rem(45px);
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
   }
 }
