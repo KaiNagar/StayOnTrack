@@ -11,7 +11,6 @@ export const MealTableNutrition = ({ meal }) => {
   return (
     <section className='meal-table-nutrition'>
       <div className='ingredient th row1'>Ingredient</div>
-      <div className='type th row1'>Type</div>
       <div className='amount th row1'>Amount</div>
       <div className='carbs th row1'>Carbs</div>
       <div className='protein th row1'>Protein</div>
@@ -23,9 +22,6 @@ export const MealTableNutrition = ({ meal }) => {
         return (
           <>
             <div className={`th row${idx + 2}`}>{getIngName(ing.name)}</div>
-            <div className={`${ing.type} td row${idx + 2}`}>
-              {getIngName(ing.type)}
-            </div>
             <div className={`${ing.type} td row${idx + 2}`}>{ing.amount}</div>
             <div className={`${ing.type} td row${idx + 2}`}>
               {carbs * currentIngNut}

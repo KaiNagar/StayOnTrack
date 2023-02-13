@@ -9,11 +9,15 @@ export const MealPreview = ({ meal, onAddToCart }) => {
       <div className='meal-img'>
         <img src={meal.imgUrl} alt='Meal Img' />
       </div>
-      <div className='meal-stats flex column space-between'>
-        <h3>Meal ingredients</h3>
-        <IngredientList ings={meal.ingredients} />
-        <h3>Meal calories</h3>
-        <MealCal cal={meal.totalCals} />
+      <div className='meal-stats flex column'>
+        <div className='ing-section flex column align-center justify-center'>
+          <h3 className='ing-title'>Meal ingredients</h3>
+          <IngredientList ings={meal.ingredients} />
+        </div>
+        <div className='cal-section flex column align-center justify-center'>
+          <h3 className='cal-title'>Meal calories</h3>
+          <MealCal cal={meal.totalCals} />
+        </div>
       </div>
       <button className='add-btn' onClick={(ev) => onAddToCart(ev, meal._id)}>
         Add
