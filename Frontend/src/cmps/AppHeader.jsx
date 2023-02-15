@@ -1,9 +1,22 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export const AppHeader = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const onToggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState)
+    console.log(isMenuOpen)
+  }
+
   return (
     <section className='app-header-constainer '>
       <div className='app-header container flex align-center space-between'>
+        <div
+          className={`tablet-meanu-screen ${isMenuOpen ? 'open' : ''}`}
+          onClick={onToggleMenu}
+        ></div>
+
         <div className='logo flex align-center'>
           <span className='title'>StayOnTrack</span>
           <img
@@ -11,7 +24,10 @@ export const AppHeader = () => {
             alt=''
           />
         </div>
-        <div className='header-nav flex align-center'>
+        <div className='meanu-btn' onClick={onToggleMenu}>
+          +
+        </div>
+        <div className={`header-nav flex align-center ${isMenuOpen ? 'open' : ''}`}>
           <NavLink className='header-link' to='/'>
             Home
           </NavLink>

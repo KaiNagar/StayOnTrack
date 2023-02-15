@@ -23,13 +23,48 @@
     transition: all 0.3s;
     border-radius: rem(4px);
     margin-right: 0.5rem;
-    &:hover{
+    &:hover {
       background-color: $clr-forthLCream;
     }
-    
   }
   .active {
     opacity: 1;
     background-color: $clr-forthLCream;
+  }
+  .tablet-meanu-screen {
+    z-index: 1;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    
+    &.open {
+      width: 100%;
+      height: 100%;
+      top: 70px;
+      right: 0;
+    }
+  }
+  .meanu-btn {
+    display: none;
+  }
+  @include for-tablet-layout {
+    .meanu-btn {
+      display: block;
+    }
+    .header-nav {
+      position: absolute;
+      right: -100px;
+      top: 70px;
+      height:calc(100% - 70px);
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+      border-left: 2px solid $clr-black;
+      background-color: $clr-grey;
+      transition: right 0.5s;
+      &.open {
+        right: 0;
+      }
+    }
   }
 }

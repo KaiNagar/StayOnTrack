@@ -1,8 +1,4 @@
 // COLOR PALETTE
-// $clr-MBG: hsl(218, 28%, 13%);
-// $clr-FBG: hsl(216, 53%, 9%);
-// $clr-introBG: hsl(217, 28%, 15%);
-// $clr-testiBG: hsl(219, 30%, 18%);
 $clr-white: #fff;
 $clr-black: #000;
 $clr-border: #707070;
@@ -10,7 +6,7 @@ $clr-Lgrey: #c0c0c0;
 $clr-grey: rgba(110, 103, 103, 0.5);
 $clr-warning: rgb(224, 71, 71);
 
-// Colors
+// Main theme
 $clr-mainBlue:#247291;
 $clr-secondaryYellow:#f8da5b;
 $clr-thirdCream:#eef2e2;
@@ -18,11 +14,11 @@ $clr-forthLCream: #f5f9ee;
 
 $clr-carb:rgb(255, 243, 133);
 $clr-protein:rgb(241, 110, 241);
-$clr-vegis:green;
-$clr-fat:grey;
+$clr-vegis:rgb(104, 201, 104);
+$clr-fat:rgb(179, 198, 233);
 
 // LAYOUT
-$layoutPadding: 20px;
+$layoutPadding: 15px;
 $navHeight: 65px;
 
 // LAYOUT BREAKPOINTS

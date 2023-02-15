@@ -51,16 +51,19 @@
     margin-bottom: 0.5rem;
     text-align: center;
     font-size: rem(18px);
+    font-family: ubuntu-medium;
     margin-top: 0.2rem;
   }
 
   .cal-section{
     height: min-content;
     background-color: $clr-forthLCream;
+    padding: 0.2rem;
   }
   .ing-section{
     flex-grow: 1;
     background-color: $clr-thirdCream;
+    padding: 0.2rem;
   }
 
   // .carb {
