@@ -28,6 +28,9 @@ body {
   .main-container {
     overflow: auto;
     flex-grow: 1;
+    .main{
+      height: 100%;
+    }
   }
 }
 

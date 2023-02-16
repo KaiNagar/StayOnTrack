@@ -1,3 +1,30 @@
-.login-page{
-    
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .login-section {
+    width: 100%;
+  }
+  .login-form {
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: rem(4px);
+      border: 2px solid $clr-border;
+      &:focus {
+        border: 2px solid $clr-secondaryYellow;
+        outline: none;
+      }
+    }
+  }
+  .google-facebok-login {
+  }
+  .form-error {
+    color: red;
+    font-size: rem(12px);
+    margin-right: rem(5px);
+    position: relative;
+    bottom: rem(2px);
+  }
 }
